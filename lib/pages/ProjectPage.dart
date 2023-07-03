@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:StockMemo/model/ProjectToDart.dart';
 import 'package:StockMemo/pages/ProjectPageView.dart';
 
+import '../model/conf.dart';
+
 class ProjectPage extends StatefulWidget {
   const ProjectPage({super.key});
 
@@ -121,7 +123,9 @@ class _ProjectPageState extends State<ProjectPage> {
   }
 
   Future<ProjectDart> getSn() async {
-    String url = 'http://10.0.2.2:8080/stock_memo/stockMemo';
+     Conf conf = new Conf();
+    String system = conf.system;
+    String url = '$system/stock_memo/stockMemo';
     var res = await http.post(Uri.parse(url), body: "project");
 
     if (res.statusCode == 200) {

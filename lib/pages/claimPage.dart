@@ -4,6 +4,8 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:http/http.dart' as http;
 import 'package:StockMemo/model/ClaimToDart.dart';
 
+import '../model/conf.dart';
+
 class ClaimPage extends StatefulWidget {
   const ClaimPage({super.key});
 
@@ -118,7 +120,9 @@ class _ClaimPageState extends State<ClaimPage> {
   }
 
   Future<ClaimDart> getSn() async {
-    String url = 'http://10.0.2.2:8080/stock_memo/stockMemo';
+   Conf conf = new Conf();
+    String system = conf.system;
+    String url = '$system/stock_memo/stockMemo';
     var res = await http.post(Uri.parse(url), body: "claim");
 
     if (res.statusCode == 200) {

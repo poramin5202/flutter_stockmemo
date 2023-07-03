@@ -4,6 +4,8 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:http/http.dart' as http;
 import 'package:StockMemo/model/PoToDart.dart';
 
+import '../model/conf.dart';
+
 class PoPage extends StatefulWidget {
   const PoPage({super.key});
 
@@ -131,7 +133,9 @@ class _PoPageState extends State<PoPage> {
   }
 
   Future<PoDart> getSn() async {
-    String url = 'http://10.0.2.2:8080/stock_memo/stockMemo';
+     Conf conf = new Conf();
+    String system = conf.system;
+    String url = '$system/stock_memo/stockMemo';
     var res = await http.post(Uri.parse(url), body: "po");
 
     if (res.statusCode == 200) {

@@ -1,4 +1,5 @@
 import 'package:StockMemo/model/LoginToDart.dart';
+import 'package:StockMemo/model/conf.dart';
 import 'package:StockMemo/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -87,7 +88,10 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> login() async {
-    String url = 'http://10.0.2.2:8080/stock_memo/stockMemo';
+    Conf conf = new Conf();
+    String system = conf.system;
+    String url = '$system/stock_memo/stockMemo';
+
     var res = await http.post(Uri.parse(url), body: "login/$userId/$password");
 
     if (res.statusCode == 200) {
@@ -95,8 +99,7 @@ class _LoginState extends State<Login> {
 
       print(dataAPI.login?[0].usrName);
       print(dataAPI.login?[0].usrStatus);
-
-      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
     } else {
       throw Exception('Failed to fetch data');
     }

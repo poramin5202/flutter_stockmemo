@@ -4,6 +4,8 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:http/http.dart' as http;
 import 'package:StockMemo/model/IssueToDart.dart';
 
+import '../model/conf.dart';
+
 class IssuePage extends StatefulWidget {
   const IssuePage({super.key});
 
@@ -132,7 +134,9 @@ class _IssuePageState extends State<IssuePage> {
   }
 
   Future<IssueDart> getSn() async {
-    String url = 'http://10.0.2.2:8080/stock_memo/stockMemo';
+     Conf conf = new Conf();
+    String system = conf.system;
+    String url = '$system/stock_memo/stockMemo';
     var res = await http.post(Uri.parse(url), body: "issue");
 
     if (res.statusCode == 200) {

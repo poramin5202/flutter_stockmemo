@@ -90,14 +90,13 @@ class _LoginState extends State<Login> {
   Future<void> login() async {
     Conf conf = new Conf();
     String system = conf.system;
-    String url = '$system/stock_memo/stockMemo';
-
+    String url = '$system';
     var res = await http.post(Uri.parse(url), body: "login/$userId/$password");
-
+ 
     if (res.statusCode == 200) {
       LoginDart dataAPI = loginDartFromJson(res.body);
 
-      print(dataAPI.login?[0].usrName);
+      print(dataAPI.login?[0].usrName );
       print(dataAPI.login?[0].usrStatus);
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
     } else {

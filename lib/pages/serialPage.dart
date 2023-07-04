@@ -163,7 +163,7 @@ class _SerialSnState extends State<SerialSn> {
   void getPoNO(String SnRunnigId) async {
      Conf conf = new Conf();
     String system = conf.system;
-    String url = '$system/stock_memo/stockMemo';
+    String url = '$system';
     var res = await http.post(Uri.parse(url), body: "serial/" + SnRunnigId);
 
     if (res.statusCode == 200) {

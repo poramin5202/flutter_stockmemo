@@ -136,7 +136,7 @@ class _IssuePageState extends State<IssuePage> {
   Future<IssueDart> getSn() async {
      Conf conf = new Conf();
     String system = conf.system;
-    String url = '$system/stock_memo/stockMemo';
+    String url = '$system';
     var res = await http.post(Uri.parse(url), body: "issue");
 
     if (res.statusCode == 200) {

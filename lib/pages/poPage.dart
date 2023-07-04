@@ -135,7 +135,7 @@ class _PoPageState extends State<PoPage> {
   Future<PoDart> getSn() async {
      Conf conf = new Conf();
     String system = conf.system;
-    String url = '$system/stock_memo/stockMemo';
+    String url = '$system';
     var res = await http.post(Uri.parse(url), body: "po");
 
     if (res.statusCode == 200) {
